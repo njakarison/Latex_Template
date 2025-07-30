@@ -1,6 +1,6 @@
 attic/*
 main_francais.pdf
-main_francais.aux
-main_francais.log
-main_francais.sync*
+*.aux
+*.log
+*.sync*
 
