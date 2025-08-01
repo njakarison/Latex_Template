@@ -62,6 +62,12 @@
 \RequirePackage{fontawesome}
 %\RequirePackage{tgbonum}
 \RequirePackage{pifont}
+\RequirePackage[french]{nomencl}
+\RequirePackage{placeins}
+\RequirePackage{textcomp}
+\RequirePackage{tabularx}
+\RequirePackage{multirow}
+
 
 %% Choix de titre du document
 \newcommand{\typeRapport}{MÉMOIRE DE FIN D'ÉTUDES EN VUE DE L'OBTENTION DU DIPLÔME D'INGÉNIEUR}
@@ -82,7 +88,7 @@
 \urlstyle{rm}
 \RequirePackage{amsthm} % a mettre apres hyperref
 \ifthenelse{\equal{\WithAlgoTe}{true}}{
-    \RequirePackage[french,boxed,algochapter,linesnumbered]{algorithm2e}
+    \RequirePackage[french, algochapter, linesnumbered]{algorithm2e} %boxed, 
     \SetAlCapSkip{0.5\baselineskip}
     \SetAlCapFnt{\normalfont}
     \SetAlTitleFnt{normalfont}
@@ -90,7 +96,7 @@
     \renewcommand{\@algocf@capt@boxed}{above}% Placement de la caption sur le dessus
 }{}
 
-\RequirePackage[round]{lib/natbibESPA} % Style de citation de l'ESPA
+\RequirePackage[square]{lib/natbibESPA} % Style de citation de l'ESPA
 \RequirePackage{multibib} % Permettre plusieurs listes de références
 
 \newcommand{\bibed}{éd}
@@ -148,6 +154,10 @@
 \newcommand{\encadreurC}[3]{\newcommand{\titreEncC}{#1}\newcommand{\nomEncC}{#2}\newcommand{\foncEncC}{#3}}
 %%% Quatrième Encadreur
 \newcommand{\encadreurD}[3]{\newcommand{\titreEncD}{#1}\newcommand{\nomEncD}{#2}\newcommand{\foncEncD}{#3}}
+%%% Quatrième Encadreur
+\newcommand{\encadreurE}[3]{\newcommand{\titreEncE}{#1}\newcommand{\nomEncE}{#2}\newcommand{\foncEncE}{#3}}
+%%% Quatrième Encadreur
+\newcommand{\encadreurF}[3]{\newcommand{\titreEncF}{#1}\newcommand{\nomEncF}{#2}\newcommand{\foncEncF}{#3}}
 
 %%% Président du jury
 \newcommand{\president}[3]{\newcommand{\titrePres}{#1}\newcommand{\nomPres}{#2}\newcommand{\foncPres}{#3}}
@@ -299,11 +309,13 @@
                     \vspace{0.3 cm}
                     \rightline{{\normalsize
                     \parbox{0.7\textwidth}{
-                        \begin{itemize}[noitemsep,leftmargin=*,label=\ding{118}]
+                        \begin{itemize}[noitemsep,leftmargin=*,label=\ding{70}]
                             \item \titreEncA~\nomEncA
                             \ifdef{\nomEncB}{\item \titreEncB~\nomEncB }{}
                             \ifdef{\nomEncC}{\item \titreEncC~\nomEncC }{}
                             \ifdef{\nomEncD}{\item \titreEncD~\nomEncD }{}
+                            \ifdef{\nomEncF}{\item \titreEncD~\nomEncF }{}
+                            \ifdef{\nomEncG}{\item \titreEncD~\nomEncG }{}
                         \end{itemize}
                     }}}
                 \end{center}
@@ -311,37 +323,13 @@
             \parbox{\textwidth}{
         	\begin{center}
             	\textit{\@anneeU} \\
-            	\textit{Promotion : \textbf{\@promo}}
+            	\ifthenelse{\equal{\TypeDoc}{memoireMaitrise}}{\textit{Promotion : \textbf{\@promo}}}{}
+            	\ifthenelse{\equal{\TypeDoc}{memoireLicence}}{\textit{Promotion : \textbf{\@promo}}}{}
         	\end{center}
             }
         \end{center}
     \end{titlepage}
     
-    \clearpage
-    %Verso
-    \newpage
-    ~\\
-    \vspace{18cm}
-    
-    \ifthenelse{\equal{\TypeLic}{reserved}}{%
-        \fbox{\parbox{6.125in}{ %% Anciennement 6.4
-            %% Interligne de 1 et taille de 10pt pour le texte
-            \renewcommand{\baselinestretch}{1}\footnotesize\footnotesize
-       	\copyright~Tous droits réservés
-            \newline
-            Cette licence signifie qu'il est interdit de reproduire, d'enregistrer ou de diffuser en tout ou en partie, le présent document.  Le lecteur qui désire imprimer ou conserver sur un autre media une partie importante de ce document, doit obligatoirement en demander l'autorisation à l'auteur.
-        }}
-    }{%
-        \begin{center}
-        \fbox{\parbox{6.125in}{
-            %% Interligne de 1 et taille de 10pt pour le texte
-            \renewcommand{\baselinestretch}{1}\footnotesize\footnotesize
-            \includegraphics[width=50bp]{figures/logocc}
-            \newline
-            Cette licence Creative Commons signifie qu'il est permis de diffuser, d'imprimer ou de sauvegarder sur un autre support une partie ou la totalité de cette oeuvre à condition de mentionner l'auteur, que ces utilisations soient faites à des fins non commerciales et que le contenu de l'oeuvre n'ait pas été modifié.
-        }}
-        \end{center}
-    }
     \restoregeometry
 }
 
@@ -349,12 +337,41 @@
 %% Page de présentation du jury
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\presentjury{%
+    \newgeometry{top=2cm, bottom=2cm, left=1.5cm, right=1.5cm}
     \begin{jurypage}%
         \let\footnotesize\small%
         \let\footnoterule\relax%
         \begin{center}%
+            
+            \includegraphics[width=3cm]{figures/logoESPA}
+            \hfill\includegraphics[width=3cm]{figures/logoUNA}\\
+            \parbox{10cm}{{\fontfamily{lmr}\selectfont 
+            \begin{center}
+                \vspace*{-4 cm}\large\textbf{REPOBLIKAN'I MADAGASIKARA}\\
+                \footnotesize\textbf{FITIAVANA - TANINDRAZANA - FANDROSOANA}\\
+                \vspace*{0.2 cm}
+                \small\textbf{MINISTÈRE DE L'ENSEIGNEMENT SUPÉRIEUR ET DE LA RECHERCHE SCIENTIFIQUE}
+            \end{center}
+            }}
+            \vspace{1cm}
+    	\parbox{\textwidth}{\begin{center}\normalsize\large\textbf{\@ecole}\end{center} }
+            \parbox{\textwidth}{\begin{center}\large\textbf{\@mention}\end{center}}
+            \parbox{\textwidth}{\begin{center}\rule{\textwidth}{2pt}\\ \vspace*{-0.65 cm}\rule{\textwidth}{0.5pt}\\ \end{center}}\\
+    	\vspace*{-0.7 cm}
+    	\parbox{\textwidth}{\begin{center}\textbf{\typeRapport}\end{center}}\\
+            \vspace*{-0.7 cm}
+            \parbox{\textwidth}{\begin{center}\rule{\textwidth}{0.5pt}\\ \vspace*{-0.62 cm}\rule{\textwidth}{2pt}\\ \end{center}}
+            %\vfill
+		\parbox{\textwidth}{\begin{center}\large\textbf{\@parcours} \\ \end{center} }\\
+            \vfill
+		\parbox{\textwidth}{\begin{center}{\fontfamily{qbk}\selectfont {\Huge {\@title}} }\\ \end{center}}\\
+            \vfill
+            Par :  \\
+            \normalsize{\@author} \\
+            %\vfill
+            \vspace{1cm}
             \renewcommand{\baselinestretch}{2}\small\normalsize
-            \textbf{PRÉSENTATION DU JURY}\\
+            %\textbf{PRÉSENTATION DU JURY}\\
             \ifthenelse{\equal{\typeRapport}{projet}}{
                 CE PROJET A ÉTÉ ÉVALUÉ
             }{
@@ -364,8 +381,8 @@
             %\vspace{6em}%
         \end{center}
         \rightline{{\normalsize
-            \parbox{0.9\textwidth}{
-                \begin{itemize}[noitemsep,leftmargin=*,label=\ding{118}]
+            \parbox{0.8\textwidth}{
+                \begin{itemize}[noitemsep,leftmargin=*,label=\ding{71}]
                     % Président du jury
                     \ifdef{\nomPres}{\item \titrePres~\nomPres~(\foncPres)}{}
                     % Premier encadreur
@@ -376,6 +393,10 @@
                     \ifdef{\nomEncC}{\item  \titreEncC~\nomEncC~(\foncEncC)}{}
                     % quatrieme Encadreur optionnel
                     \ifdef{\nomEncD}{\item \titreEncD~\nomEncD~(\foncEncD)}{}
+                    % quatrieme Encadreur optionnel
+                    \ifdef{\nomEncE}{\item \titreEncE~\nomEncE~(\foncEncE)}{}
+                    % quatrieme Encadreur optionnel
+                    \ifdef{\nomEncF}{\item \titreEncF~\nomEncF~(\foncEncF)}{}
                     % Examinateur 1
                     \ifdef{\nomExA}{\item \titreExA~\nomExA~(\foncExA)}{}
                     % Examinateur 2
@@ -387,20 +408,38 @@
                 \end{itemize}
             }
         }}
-        \begin{flushleft}
-            \renewcommand{\baselinestretch}{1}\small\normalsize
-            
-
-        \end{flushleft}
         \begin{center}%
-            \vspace{3em}%
+            %\vspace{3em}%
+            \vfill
             \renewcommand{\baselinestretch}{2}\small\normalsize%
             \ifthenelse{\equal{\TypeDoc}{memoire}}{IL}{ELLE}~A FAIT L'OBJET D'UNE SOUTENANCE DEVANT JURY ET PUBLIC\\
-            LE \MakeUppercase{\@datesoutenance}\\
-            À L'ÉCOLE SUPÉRIEURE POLYTECHNIQUE
+            LE \MakeUppercase{\@datesoutenance}, À L'ÉCOLE SUPÉRIEURE POLYTECHNIQUE
         \end{center}\par%
-        \vfil\null%
+        \vfil%\null%
+
+    \ifthenelse{\equal{\TypeLic}{reserved}}{%
+        \fbox{\parbox{0.9\textwidth}{ %% Anciennement 6.4
+            %% Interligne de 1 et taille de 10pt pour le texte
+            \renewcommand{\baselinestretch}{1}\footnotesize\footnotesize
+       	\copyright~Tous droits réservés
+            \newline
+            Cette licence signifie qu'il est interdit de reproduire, d'enregistrer ou de diffuser en tout ou en partie, le présent document.  Le lecteur qui désire imprimer ou conserver sur un autre media une partie importante de ce document, doit obligatoirement en demander l'autorisation à l'auteur.
+        }}
+    }{%
+    }
+    \ifthenelse{\equal{\TypeLic}{creativecommons}}{
+        \begin{center}
+        \fbox{\parbox{0.9\textwidth}{
+            %% Interligne de 1 et taille de 10pt pour le texte
+            \renewcommand{\baselinestretch}{1}\footnotesize\footnotesize
+            \includegraphics[width=50bp]{figures/logocc}
+            \newline
+            Cette licence Creative Commons signifie qu'il est permis de diffuser, d'imprimer ou de sauvegarder sur un autre support une partie ou la totalité de cette oeuvre à condition de mentionner l'auteur, que ces utilisations soient faites à des fins non commerciales et que le contenu de l'oeuvre n'ait pas été modifié.
+        }}
+        \end{center}
+    }{}
     \end{jurypage}
+    \restoregeometry
 }
 
 
@@ -947,7 +986,8 @@
       \leftmargin #1%
       \labelwidth \leftmargin%
       \labelsep    1mm
-      }}%
+      }
+    }%
   {\end{list}}
 
 \newenvironment{listofsymbols}[1][\descril]{%
