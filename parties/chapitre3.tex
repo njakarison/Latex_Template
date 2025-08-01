@@ -1,0 +1,62 @@
+\chapter{Ajout d'un troisième chapitre}
+
+\section{Test de matrice}
+    L'équation \ref{matriceA} représente une matrice simplifiée.
+ 	\begin{equation}
+            \label{matriceA}
+		[a^m_{\lambda}] = 
+		\begin{pmatrix}
+    		\mathcal{L}(EU^m_1|SP_1)    &\cdots       & 0 \\
+                \vdots                      &\ddots       & \vdots    \\
+                0                           &\cdots       & \mathcal{L}(EU^m_{U_m}|SP_{\Lambda})   \\ 
+		\end{pmatrix} 
+	\end{equation}
+    
+    L'équation \ref{matriceB} représente une matrice plus complexe.
+    
+    \begin{equation}
+        \label{matriceB}
+	\mathcal{A} = 
+	\begin{pmatrix}
+    	[a^1_1]     &[0]        & [0]       & \cdots           & [0]       & \cdots    & [0] \\ 
+		[0]			& [a^1_2] 	& [0] 		& \cdots           & [0]	   &\cdots     & [0] \\
+            \vdots  	& \vdots	& \vdots	&  			       & \vdots    &  	       & \vdots	\\ 
+		[0] 		& \cdots 	& [a^1_{\lambda}] & \cdots     & [0]       &\cdots     & [0] \\
+		\vdots  	& \vdots  	& \vdots  	&[a^m_{\lambda}]   & \vdots    &  		   & \vdots \\
+		[0]  		& [0]  		& [0] 		& \cdots 	 	   & [a^M_1]   & \cdots    &[0] \\  
+		\vdots  	& \vdots  	& \vdots    & 				   & \vdots    &  \ddots   & \vdots \\ 
+ 		[0] 			& [0] 		& [0] 		& \cdots 		   & [0] 	   & \cdots    &[a^M_{\Lambda}] \\ 
+		\end{pmatrix}
+		\qquad b = 
+		\begin{pmatrix}
+			[\tau_1]\\ 
+			[\tau_1]\\ 
+			\vdots \\ 
+			[\tau_1]\\ 
+			\vdots \\ 
+			[\tau_m]\\ 
+			\vdots \\
+			[\tau_M]\\  
+		\end{pmatrix}
+    \end{equation}
+
+Le tableau \ref{chap3:tableau1} représente un autre tableau.
+
+\begin{table}
+    \parbox{0.65\textwidth}{%
+    \caption{Un tableau}%
+    \label{chap3:tableau1}} % Contrainte manuelle de la largeur de la légende
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+	\hline
+		      {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+    \end{tabular}
+\end{table}

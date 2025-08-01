@@ -1,44 +1,51 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DECLARATION DE LA CLASSE DU DOCUMENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% memoireMaitrise; projetTutore; projetSemestre; memoireLicence; projet; miniProjet
+%% Les fichier dans le répertoire couverture contiennent les informations qui vont s'afficher sur la page de couverture. 
+%%Option du type de rapport : memoireMaitrise; projetTutore; projetSemestre; memoireLicence; projet; miniProjet
 
-\documentclass[a4paper, oneside, 12pt, memoireMaitrise, francais, creativecommons, hyperref]{memoESPA}
+\documentclass[
+    a4paper,        %%% Format du papier : a4paper, letter, ...
+    oneside,        %%% recto ou recto-verso : oneside, twoside.
+    12pt,           %%% Taille par défaut des polices
+    memoireLicence, %%% Type de rapport à produire : memoireMaitrise, projetTutore, memoireLicence, ....
+    francais,       %%% Langue du document
+    creativecommons,%%% Affichage de la licence d'utilisation du document : reserved, creativecommons
+    hyperref,       %%% Utilisation de lien hypertexte
+    withAlgo2e      %%% Utilisation de l'algorithme dans le document
+]{memoESPA}
+
+\makenomenclature
+\makeindex
 
 % DECLARATION D'UNE LISTE DE RÉFÉRENCES SUPPLÉMENTAIRE
-\newcites{refs}{LISTE DE RÉFÉRENCES}
-
-
-
-%%% Inclure les fichiers nécessaires
-
+\newcites{refs}{WEBOGRAPHIE}
+%%% Inclusion des fichiers nécessaires pour les pages de titre et de garde
 %% Informations sur le rapport
-\input{include/1-rapport}
+\input{couverture/1-titre}
 %% Liste des encadreurs
-\input{include/2-encadreurs}
+\input{couverture/2-encadreurs}
 %% Liste des jurys 
-\input{include/3-jurys}
+\input{couverture/3-jurys}
 
+%% Configuration des commandes pour un algorithme
+\SetKwProg{Fn}{Function}{}{}
+\SetKwProg{Pr}{Procedure}{}{}
+\SetKwInOut{Variable}{var}
+\SetKwInput{KwData}{Algorithme}
+\SetKw{End}{end}
+\SetKw{Kw}{}
+\makeindex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % INTITULÉ DU DIPLOME
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Il est possible de modifier l'intitulé du diplome en redéfinissant la commande
-% \lediplome, comme dans l'exemple suivant:
-
-%\renewcommand{\lediplome}{
-%    DE LA\\MAÎTRISE EN GÉNIE ÉLECTRIQUE\\M.Sc.A.
-%    }
-
-
 \listfiles
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DÉBUT DU DOCUMENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \pagenumbering{Roman}
-
 %%- Affichage de la page titre -%%
 \maketitle
 
@@ -46,202 +53,58 @@
 \presentjury
 
 %%%- Avant propos -%%
-\begin{avantpropos}
-
-\lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
-
-\end{avantpropos}
-
-
+\input{parties/01-avantpropos}
 
 %%- Remerciements -%%
-\begin{remerciements}
+\input{parties/02-remerciements}
 
-\lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
-
-
-\end{remerciements}
-
-
-%%- Sommaire -%%
-
-\begin{sommaire}{mot-clé1, mot-clé2}
-
-\lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
-
-\end{sommaire}
-
-
-%%- Abstract -%%
-\begin{abstract}{Titre en anglais}{keyword1, keyword2}
-
-\lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
-
-\end{abstract}
-
+%%- Sommaire  et abstract-%%
+\input{parties/03-resume}
 
 %%- Affichage de la table des matières -%%
 \tableofcontents
 
-
 %%- Affichage de la liste des tableaux -%%
 \listoftables
-
 
 %%- Affichage de la liste des Figures -%%
 \listoffigures
 
-
 %%- Déclaration et affichage de la liste des abbréviations -%%
-\begin{listofabbr}[3cm]
-\item [ESPA] École Supérieure Polytechnique
-\item [STIC] Sciences et Technologies de l’Information et de la Communication
-\item [EII] Électronique et Informatique Industrielle
-\item [TR] Télécommunication et Réseaux
-\end{listofabbr}
-
+\input{parties/04-abbreviations}
 
 %%- Déclaration et affichage de la liste des symboles -%%
-\begin{listofsymbols}[3cm]
-\item [a] Première lettre de l'alphabet
-\item [A] Première lettre de l'alphabet en majuscule
-\end{listofsymbols}
-
+\input{parties/05-symboles}
 
 \cleardoublepage
 
 \pagenumbering{arabic}
 
-% Marginpar à gauche du document
+%% Marginpar à gauche du document
 \reversemarginpar
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% EXEMPLE DE CORPS DE THÈSE OU MÉMOIRE
+% EXEMPLE DE CORPS DE MÉMOIRE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{introduction}
-
-\lipsum[1-3] % Texte de remplissage pour donner un exemple de la mise en page
-
-\end{introduction}
+%% Introduction
+\input{parties/06-introduction}
 
 %%- Premier chapitre de démonstration -%%
-\chapter{Test de long titre de Chapitre, avec retour à la ligne. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque justo justo, porta sagittis feugiat eget, ornare rhoncus ligula. Nunc non odio sed lacus rutrum rhoncus.}
-
-
-\section{Tests de mise en page}
-
-Dans cette section, différents environnements de mise en page sont présentés.
-
-\subsection{figures}
-    Exemple de déclaration de figure
-    \begin{figure}
-    	\centering % Les figures doivent être centrées
-    		\includegraphics[width=0.9\textwidth]{figures/logoESPA.png} % Spécification du paramètres "width", la largeur de l'image (en conservant les proportions). La largeur est ici restreinte à 0.75 fois "\textwidth", qui est la largeur maximale du texte dans le document en prenant en compte les marges
-    	 \\ \parbox{0.75\textwidth}{\caption{Test de longue légende, avec utilisation de framebox et parbox pour restreindre la largeur de la légende.}\label{fig:vueEts}} % Utilisation d'une parbox pour restreindre la largeur de la légende. Ici la taille maximale a été fixée à la largeur choisie pour l'image (0.75\textwidth). Le décanat demande d'éviter d'avoir des légendes qui dépasse les figures, dans la mesure du possible (si l'image est trop petite, la légende peut dépasser sa largeur).
-    \end{figure}
-
-
-\subsection{Test des listings}
-
-Présentation des principaux listings: les énumations et les listes.
-
-\subsubsection{Énumérations: environement enum}
-
-Test de l'environnement enum:
-\begin{enumerate}
- \item test 1
- \item test 2
-\end{enumerate}
-
-\subsubsection{Listes: environement itemize}
-
-Test de l'environnement itemize
-\begin{itemize}
- \item test 1
- \item test 2
-\end{itemize}
-
-\subsection{Test des équations}
-
-Mise en page des équations
-
-\begin{equation}
-   \beta = 8
-\end{equation}
-
-\begin{equation}
-   \bm{\gamma} = \alpha \times 3
-\end{equation}
-
-\section{Seconde section}
-
-Exemple de seconde section pour illustrer la mise en page de la table des matières
-
+\input{parties/chapitre1}
 
 %%- Deuxiemme chapitre de démonstration -%%
-\chapter{Ajout d'un second chapitre}
+\input{parties/chapitre2}
 
-\section{Test de mise en page d'un tableau}
+%%- chapitre 3 -%%
+\input{parties/chapitre3}
 
-Les tableaux sont soumis aux mêmes contraintes que les figures, en dehors de la position de la légende qui doit être au-dessus.
-
-\begin{table}
-    \parbox{0.65\textwidth}{\caption{Test de longue légende pour un tableau, avec retour à la ligne.}} % Contrainte manuelle de la largeur de la légende
-    \begin{tabular}{|c|c|c|c|c|c|c|c|}
-	\hline
-		      {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-    \end{tabular}
-\end{table}
-
-
-\section{Test des références}
-
-\subsection{Références à la bibliographie}
-
-Citation d'une référence de la bibliographie \citep{BookExample}.
-
-\subsection{Références à la liste de références "refs"}
-
-Citation d'une référence de la liste de référence "refs" déclarée au début du document \citerefs{Test}.
-
-\subsection{Références à un label du document}
-
-Référence à une Figure associée à un label: Figure \ref{fig:vueEts}.
-
-\subsection{Références à des adresses}
-
-\subsubsection{Test de href}
-
-Utilisation de href, pour intégrer un lien dans une portion de texte:
-\href{https://www.rahombe.com/}{Lien vers une page web}.
-
-\subsubsection{Test de url}
-
-Utilisation de url pour citer un lien cliquable:
-\url{https://espantsiranana.mg/actualites}.
-
+%%- chapitre 4 -%%
+%\input{parties/chapitre4}
+% .....
 
 %%- Conclusion -%%
-\begin{conclusion}
-
-\lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
-
-\end{conclusion}
-
+\input{parties/07-conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  EXEMPLE D'ANNEXE:
@@ -252,92 +115,31 @@ Utilisation de url pour citer un lien cliquable:
 \multiannexe
 
 %% Inclusion d'une annexe externe
-% \include{extAnnex}
-
-\chapter{Test d'une annexe}
-
-
-\section{Première Section de l'Annexe}
-
-
-\subsection{Figures en annexe}
-
-\begin{figure}
-	\centering
-	%\fbox{
-		\includegraphics[width=0.75\textwidth]{figures/logoESPA.png}
-	%}
-	 \\ \parbox{0.75\textwidth}{\caption{Figure en Annexe.}\label{fig:testAp}}
-\end{figure}
-
-Les figures en annexe se déclarent de la même manière que dans le reste du document, et leur numération est automatiquement adaptée (exemple, Figure \ref{fig:testAp}).
-
-\subsubsection{Tables en annexe}
-
-\begin{table}
-		\parbox{0.65\textwidth}{\caption{Table en Annexe.}\label{tab:testAp}}
-
-		\begin{tabular}{|c|c|c|c|c|c|c|c|}
-		\hline
-			{\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-			blá & blá & blá & blá & blá & blá & blá & blá \\
-	  \hline
-		\end{tabular}
-\end{table}
-
-Même chose pour les tableaux (exemple, Tableau \ref{tab:testAp}).
-
+\input{parties/08-annexe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAPHIE ET RÉFÉRENCES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%- Bibliographie -%%
-\newpage
-%Interligne sinmple pour la bibliographie
-\begin{spacing}{1}
-	\nocite{*} % Utiliser la commande nocite pour afficher des références qui n'ont pas été citées dans le document. '*' permet de toutes les afficher.
-	\bibliographystyle{unsrt} % Utilisation du style bibliographique de l'ETS
-	\addcontentsline{toc}{chapter}{BIBLIOGRAPHIE} % Ajout de la bibliographie à la table des matières
-
-	\bibliography{biblio_fr} % Liste des fichiers bib de bibliographie, biblio.bib est un exemple
-
-\end{spacing}
-
-%%- Références, exemple des références "refs" --%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IMPORTANT: NOTES POUR COMPILER ET AFFICHER LES RÉFÉRENCES ADDITIONNELLES (remplacer "refs" par le suffixe choisi)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Suivre les trois étapes:
-%   1. Compiler le document une fois pour renseigner les références utilisées dans refs.aux
-%   2. Lancer la compilation des références
-% 		- Sous Linux: Utilser la commande "bibtex refs" dans le dossier du document
-%		- Sous MacOSX (distribution MacTex): Utilser la commande "/usr/texbin/bibtex refs" dans le dossier du document
-%		- Sous Windows: Éditer le script "update_refs.bat" pour renseigner le bon suffixe, et le lancer
-%   3. Recompiler le document deux fois
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-% Le fonctionnement est similaire, en rajoutant le suffixe choisi "refs" à la fin de chaque commande de bibliographie
-\begin{spacing}{1}
-	%\nociterefs{*}
-	\bibliographystylerefs{bibESPA}
+    %%- Bibliographie -%%
+    \newpage
+    %Interligne sinmple pour la bibliographie
+    \begin{spacing}{1}
+        \nocite{*} % Afficher des références qui n'ont pas été citées. '*' permet de toutes les afficher.
+        %\bibliographystyle{biblio/bibESPA}
+        \bibliographystyle{plain}
+        \addcontentsline{toc}{chapter}{BIBLIOGRAPHIE} % Ajout de la bibliographie à la table des matières
+        \bibliography{biblio/bibliographie} % Liste des fichiers bib de bibliographie, biblio.bib est un exemple
+    \end{spacing}
     
-	\addcontentsline{toc}{chapter}{LISTE DE RÉFÉRENCES}
-
-	\bibliographyrefs{refs} % Liste des fichiers bib de référence, refs.bib est un exemple
-
-\end{spacing}
-
+    \newpage
+    
+    \begin{spacing}{1}
+        \nociterefs{*}
+        %\bibliographystylerefs{kluwer}%kluwer, agsm, dcu, plain, plainnat
+        \bibliographystylerefs{alphaurl}
+        \addcontentsline{toc}{chapter}{WEBOGRAPHIE}
+        \bibliographyrefs{biblio/webographie}
+    \end{spacing}
+    
 \end{document}

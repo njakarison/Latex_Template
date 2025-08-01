@@ -1,0 +1,57 @@
+%%- Deuxiemme chapitre de démonstration -%%
+\chapter{Ajout d'un second chapitre}
+
+\section{Test de mise en page d'un tableau}
+
+Les tableaux sont soumis aux mêmes contraintes que les figures, en dehors de la position de la légende qui doit être au-dessus, exemple Tableau \ref{chap2:tableau1}.
+
+\begin{table}
+    \parbox{0.65\textwidth}{%
+    \caption{Test de longue légende pour un tableau, avec retour à la ligne.}%
+    \label{chap2:tableau1}%
+    } % Contrainte manuelle de la largeur de la légende
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+	\hline
+		      {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} & {\bf titre} \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+			blá & blá & blá & blá & blá & blá & blá & blá \\
+	  \hline
+    \end{tabular}
+\end{table}
+
+
+\section{Test des références}
+
+\subsection{Références à la bibliographie}
+
+Citation d'une référence de la bibliographie \citep{BookExample}.
+
+\subsection{Références à la liste de références "refs"}
+
+Citation d'une référence de la liste de référence "refs" déclarée au début du document \citerefs{classURL}.
+
+\subsection{Références à un label du document}
+
+Référence à une Figure associée à un label: Figure \ref{org-brm} de la page \pageref{org-brm}.
+
+\subsection{Références à des adresses}
+
+\subsubsection{Test de href}
+
+Utilisation de href, pour intégrer un lien dans une portion de texte:
+\href{https://www.rahombe.com/}{Lien vers une page web}.
+
+\subsubsection{Test de url}
+
+Utilisation de url pour citer un lien cliquable:
+\url{https://espantsiranana.mg/actualites}.
