@@ -67,12 +67,17 @@
 \RequirePackage{textcomp}
 \RequirePackage{tabularx}
 \RequirePackage{multirow}
+\RequirePackage[square]{lib/natbibESPA} % Style de citation de l'ESPA
+\RequirePackage{multibib} % Permettre plusieurs listes de références
+\RequirePackage{fancyhdr}
+\RequirePackage{amsthm} % a mettre apres hyperref
+
 
 
 %% Choix de titre du document
 \newcommand{\typeRapport}{MÉMOIRE DE FIN D'ÉTUDES EN VUE DE L'OBTENTION DU DIPLÔME D'INGÉNIEUR}
 \ifthenelse{\equal{\TypeDoc}{memoireMaitrise}}{\renewcommand{\typeRapport}{MÉMOIRE DE FIN D'ÉTUDES EN VUE DE L'OBTENTION DU DIPLÔME D'INGÉNIEUR}}{}
-\ifthenelse{\equal{\TypeDoc}{memoireLicence}}{\renewcommand{\typeRapport}{MÉMOIRE DE FIN D'ÉTUDES EN VUE DE L'OBTENTION DU GRADE DE LICENCE}}{}
+\ifthenelse{\equal{\TypeDoc}{memoireLicence}}{\renewcommand{\typeRapport}{MÉMOIRE DE FIN D'ÉTUDES EN VUE DE L'OBTENTION DU DIPLÔME DE LICENCE}}{}
 \ifthenelse{\equal{\TypeDoc}{projetSemestre}}{\renewcommand{\typeRapport}{RAPPORT DE PROJET FIN DE SEMESTRE}}{}
 \ifthenelse{\equal{\TypeDoc}{projetTutore}}{\renewcommand{\typeRapport}{RAPPORT DE PROJET TUTORÉ}}{}
 
@@ -86,7 +91,7 @@
     \newcommand{\texorpdfstring}[2]{#1}
 }
 \urlstyle{rm}
-\RequirePackage{amsthm} % a mettre apres hyperref
+
 \ifthenelse{\equal{\WithAlgoTe}{true}}{
     \RequirePackage[french, algochapter, linesnumbered]{algorithm2e} %boxed, 
     \SetAlCapSkip{0.5\baselineskip}
@@ -95,9 +100,6 @@
     \SetAlgoCaptionSeparator{\quad}
     \renewcommand{\@algocf@capt@boxed}{above}% Placement de la caption sur le dessus
 }{}
-
-\RequirePackage[square]{lib/natbibESPA} % Style de citation de l'ESPA
-\RequirePackage{multibib} % Permettre plusieurs listes de références
 
 \newcommand{\bibed}{éd}
 \newcommand{\bibEd}{Éd}
@@ -672,7 +674,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Table des matières
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \ifthenelse{\equal{\DocLang}{english}}{
     \addto\captionsenglish{
       \renewcommand{\contentsname}%
@@ -1130,7 +1131,8 @@
     \newcommand{\multiannexe}{} %%Pour le moment
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %% Modification des annexes numérotées        % NOUVELLE DEMANDE : PAS REPETER LE TITRE SUR LA PAGE SUIVANTE
+    %% Modification des annexes numérotées
+    % NOUVELLE DEMANDE : PAS REPETER LE TITRE SUR LA PAGE SUIVANTE
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \renewcommand{\@makechapterhead}[1]{{
         \singlespacing\normalfont\bfseries%
